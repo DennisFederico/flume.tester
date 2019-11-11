@@ -1,0 +1,12 @@
+version: '3'
+services:
+  flume:
+    build:
+      context: .
+    hostname: flume
+    networks:
+      - flume-network
+networks:
+  flume-network:
+    external:
+      name: cluster-network

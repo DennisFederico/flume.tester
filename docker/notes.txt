@@ -1,0 +1,9 @@
+docker run -it --rm --volume ${pwd}/etc:/opt/flume/examples --name flume-source --network cluster-network flume-tester:latest bash
+
+curl -X POST -H 'Content-Type: application/json; charset=UTF-8' -d '[{"headers":{"header.key":"header.value"}, "body":"hello world"}]' http://flume:1234
+
+docker run --name myflume --network cluster-network bigcontainer/flume
+docker run -it --rm --network cluster-network openjdk:8-stretch bash
+
+
+export FLUMEIP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' flume)
