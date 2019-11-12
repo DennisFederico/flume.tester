@@ -18,11 +18,12 @@ RUN \
   tar xvzf /tmp/apache-flume-${FLUME_VERSION}-bin.tar.gz -C /opt && \
   rm -f /tmp/apache-flume-* && \
   ln --symbolic /opt/apache-flume-${FLUME_VERSION}-bin /opt/flume
+ADD ./etc/zookeeper-3.4.14.jar /opt/apache-flume-${FLUME_VERSION}-bin/lib/zookeeper-3.4.14.jar
 
 ENV FLUME_HOME /opt/flume
 
-COPY etc/*.properties /opt/flume/examples/
-COPY etc/start-flume-agent.sh /opt/flume/
+COPY ./etc/*.properties /opt/flume/examples/
+COPY ./etc/start-flume-agent.sh /opt/flume/start-flume-agent.sh
 WORKDIR /opt/flume
 
 #ENTRYPOINT [ "./start-flume.sh" ]
